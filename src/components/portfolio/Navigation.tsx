@@ -1,10 +1,12 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
+import ResumeModal from "./ResumeModal";
 
 const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isResumeModalOpen, setIsResumeModalOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -61,6 +63,7 @@ const Navigation = () => {
             <Button 
               variant="outline"
               className="border-primary/30 text-primary hover:bg-primary hover:text-primary-foreground transition-all duration-300"
+              onClick={() => setIsResumeModalOpen(true)}
             >
               Resume
             </Button>
@@ -97,6 +100,7 @@ const Navigation = () => {
               <Button 
                 variant="outline"
                 className="self-start border-primary/30 text-primary hover:bg-primary hover:text-primary-foreground transition-all duration-300 mt-2"
+                onClick={() => setIsResumeModalOpen(true)}
               >
                 Resume
               </Button>
@@ -104,6 +108,12 @@ const Navigation = () => {
           </div>
         )}
       </div>
+
+      {/* Resume Modal */}
+      <ResumeModal 
+        isOpen={isResumeModalOpen}
+        onClose={() => setIsResumeModalOpen(false)}
+      />
     </nav>
   );
 };
